@@ -1,0 +1,308 @@
+1.
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        char ch ='J';
+        int intCh = (int) ch;
+        System.out.println("J corresponds with "+ intCh);
+    }
+}
+
+2.
+package com.company;
+
+public class Main2 {
+
+    public static void main(String[] args) {
+        String s1 = "I have ";
+        String s2 = " apples ";
+        int num = 3;
+        String s = s1 + num + s2;
+        System.out.println(s);
+    }
+}
+
+3.
+package com.company;
+
+public class Main3 {
+    public static void main(String[] args) {
+        int i = 35;
+        String str = Integer.toString(i);
+        System.out.println(str);
+
+        double i2 = 32.4e10;
+        String str2 = Double.toString(i2);
+        System.out.println(str2);
+
+        long i3 = 3422222;
+        String str3 = Long.toString(i3);
+        System.out.println(str3);
+
+        float i4 = 3.46f;
+        String str4 = Float.toString(i4);
+        System.out.println(str4);
+    }
+}
+
+4.
+package com.company;
+
+public class Main4 {
+    public static void main(String[] args) {
+        char ch = 'S';
+        
+        // c использованием класса Character
+        String charToString = Character.toString(ch);
+        System.out.println(charToString);
+        
+        // с использованием операции добавления класса String
+        String str = "" + ch;
+        System.out.println(str);
+        
+        //с использованием массива
+        String fromChar = new String(new char[] { ch });
+        System.out.println(fromChar);
+        
+        // с использованием метода valueOf класса String
+        String valueOfChar = String.valueOf(ch);
+        System.out.println(valueOfChar);
+    }
+}
+
+5.
+package com.company;
+
+public class Main5 {
+    public static void main(String[] args) {
+        char ch = '9';
+
+        // c использованием метода getNumericValue класса Character
+        int i1 = Character.getNumericValue(ch);
+        System.out.println(i1);
+
+        // c использованием метода digit класса Character
+        int i2 = Character.digit(ch,10);
+        System.out.println(i2);
+    }
+}
+
+6.
+package com.company;
+
+public class Main6 {
+    public static void main(String[] args) {
+        //int to long
+        int i = 2015;
+        long l = (long) (i);
+        System.out.println(l);
+
+        //int to float
+        int i1 = 2015;
+        float f = (float) (i1);
+        System.out.println(f);
+
+        //long to int
+        long l1 = 214748364;
+        int i2 = (int) l1;
+        System.out.println(i2);
+
+        //double to int
+        double d = 3.14;
+        int i3 = (int) d;
+        System.out.println(i3);
+    }
+}
+
+7.
+package com.company;
+
+public class Main7 {
+    public static void main(String[] args) {
+        int x= 300000;
+        System.out.print(x*x);
+    }
+}
+
+8.
+package com.company;
+
+public class Main8 {
+    public static void main(String[] args) {
+        int i=300000;
+        System.out.println(i*i);   // умножение с точностью 32 бита
+        long m=i;
+        System.out.println(m*m);   // умножение с точностью 64 бита
+        System.out.println(1/(m-i));
+    }
+}
+
+9.
+package com.company;
+
+public class Main9 {
+    public static void main(String[] args) {
+        System.out.println(1000*60*60*24*7);
+        // вычисление для недели
+        System.out.println(1000*60*60*24*30);
+        System.out.println(1000*60*60*24*30L);
+    }
+}
+
+10.
+package com.company;
+
+public class Main10 {
+    public static void main(String[] args) {
+        byte x=5;
+        byte y1=x++;     // на момент начала исполнения x равен 5
+        byte y2=x--;      // на момент начала исполнения x равен 6
+        byte y3=++x;    // на момент начала исполнения x равен 5
+        byte y4=--x;      // на момент начала исполнения x равен 6
+        System.out.println(y1);
+        System.out.println(y2);
+        System.out.println(y3);
+        System.out.println(y4);
+    }
+}
+
+11.
+package com.company;
+
+public class Main11 {
+    public static void main(String[] args) {
+        byte x=-128;
+        System.out.println(-x);
+
+        byte y=127;
+        System.out.println(++y);
+    }
+}
+
+12.
+package com.company;
+
+public class Main12 {
+    public static void main(String[] args) {
+        int x=1;
+        System.out.println("x="+x);
+    }
+}
+
+13.
+package com.company;
+
+public class Main13 {
+    public static void main(String[] args) {
+        System.out.println(1+2+"text");
+        System.out.println("text"+1+2);
+    }
+}
+
+14.
+package com.company;
+
+public class Main14 {
+    public static void main(String[] args) {
+        char c='A';
+        System.out.println(c);
+        System.out.println(c+1);
+        System.out.println("c="+c);
+        System.out.println('c'+'='+c);
+    }
+}
+
+15.
+package com.company;
+
+public class Main15 {
+    public static void main(String[] args) {
+        System.out.println(1e20f*1e20f);
+        System.out.println(-1e200*1e200);
+    }
+}
+
+16.
+package com.company;
+
+public class Main16 {
+    public static void main(String[] args) {
+        System.out.println(1e-40f/1e10f);   // underflow для float
+        System.out.println(-1e-300/1e100);  // underflow для double
+        float f=1e-6f;
+        System.out.println(f);
+        f+=0.002f;
+        System.out.println(f);
+        f+=3;
+        System.out.println(f);
+        f+=4000;
+        System.out.println(f);
+    }
+}
+
+17.
+package com.company;
+
+public class Main17 {
+    public static void main(String[] args) {
+        double d = 1e-305 * Math.PI;
+        System.out.println(d);
+        for (int i = 0; i < 4; i++)
+            System.out.println(d /= 100000);
+    }
+}
+
+18.
+package com.company;
+
+public class Main18 {
+    public static void main(String[] args) {
+        int x=3;
+        int y=5;
+        System.out.println(x/y);
+        System.out.println((double)x/y);
+        System.out.println(1.0*x/y);
+    }
+}
+
+19.
+package com.company;
+
+public class Main19 {
+    public static void main(String[] args) {
+        long l=111111111111L;
+        float f = l;
+        l = (long) f;
+        System.out.println(l);
+    }
+}
+
+20.
+package com.company;
+
+public class Main20 {
+    public static void main(String[] args) {
+        String s = "abc";
+        Class cl=s.getClass();
+        System.out.println(cl.getName());
+    }
+}
+
+21.
+package com.company;
+
+public class Main21 {
+    public static void main(String[] args) {
+        String s1 = "abc";
+        String s2 = "abc";
+        String s3 = "a" + "bc";
+        System.out.println(s1 == s2);
+        System.out.println(s1 == s3);
+
+        String s11="abc";
+        String s22="ab";
+        System.out.println(s11==(s22+"c"));
+    }
+}
