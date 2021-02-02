@@ -1,0 +1,178 @@
+1.
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Input a number: ");
+        int num = in.nextInt();
+        if (num<100){
+            System.out.println("less");
+        }else{
+            System.out.println("not less");
+        }
+        in.close();
+    }
+}
+
+2.
+package com.company;
+
+import java.util.Scanner;
+
+public class Main2 {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите оценку: ");
+        int num = in.nextInt();
+        switch (num){
+            case 2:
+                System.out.print("неудовлетворительно");
+                break;
+            case 3:
+                System.out.print("удовлетворительно");
+                break;
+            case 4:
+                System.out.print("хорошо");
+                break;
+            case 5:
+                System.out.print("отлично");
+                break;
+            default:
+                System.out.print("такой оценки нет");
+        }
+        in.close();
+    }
+}
+
+3.
+package com.company;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main3 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Введите день недели: ");
+        String s = reader.readLine();
+        switch (s) {
+            case "понедельник":
+                System.out.println("1");
+                break;
+            case "вторник":
+                System.out.println("2");
+                break;
+            case "среда":
+                System.out.println("3");
+                break;
+            case "четверг":
+                System.out.println("4");
+                break;
+            case "пятница":
+                System.out.println("5");
+                break;
+            case "суббота":
+                System.out.println("6");
+                break;
+            case "воскресенье":
+                System.out.println("0");
+                break;
+            default:
+                System.out.println("ошибка, день недели введен неправильно!");
+        }
+    }
+}
+
+4.
+package com.company;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main4 {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Введите число от 0 до 100, чтобы узнать разряд своей оценки: ");
+        String s = reader.readLine();
+        int number = Integer.parseInt(s);
+        if (number >= 0 & number <= 50) {
+            System.out.println("разряд F");
+        }else if (number >=51 && number <=60){
+            System.out.println("разряд E");
+        }else if (number >=61 && number <=70){
+            System.out.println("разряд D");
+        }else if (number >=71 && number <=80){
+            System.out.println("разряд C");
+        }else if (number >=81 && number <=90){
+            System.out.println("разряд B");
+        }else if (number >= 91 && number <=100){
+            System.out.println("разряд A");
+        }else{
+            System.out.println("такой оценки нет");
+        }
+    }
+}
+
+5.1.
+package com.company;
+
+public class Main5 {
+    public static void main(String[] args) {
+        double result1 = func(2.92);
+        System.out.printf("Ответ при x=2.92: %f \n", result1);
+
+        double result2 = func(-3.57);
+        System.out.printf("Ответ при x=-3.57: %f \n", result2);
+    }
+    public static double func(double x){
+        double y = 0;
+        double a = 7.2;
+        double b = 5.7;
+
+        if (x<=1){
+            y = 1/(Math.pow(a, 2)+Math.pow(x, 2));
+        }
+        else if (x>1){
+            y = b * Math.log(Math.abs(x));
+        }
+        return y;
+    }
+}
+
+5.2.
+package com.company;
+
+public class Main6 {
+    public static void main(String[] args) {
+        double result1 = func(-0.37);
+        System.out.printf("Ответ при x=-0.37: %f \n", result1);
+
+        double result2 = func(1.9);
+        System.out.printf("Ответ при x=1.9: %f \n", result2);
+
+        double result3 = func(4.58);
+        System.out.printf("Ответ при x=4.58: %f \n", result3);
+    }
+    public static double func(double x){
+        double y = 0;
+        double a = 2.73;
+        double b = 1.68;
+
+        if (x<=1){
+            y = Math.sin(Math.log(Math.abs(x)));
+        }
+        else if (x>1 && x<=3){
+            y = Math.pow(4*x+b, 2);
+        }
+        else if (x>3){
+            y = 1/(Math.pow(x, 2)+Math.pow(a, 2));
+        }
+        return y;
+    }
+}
