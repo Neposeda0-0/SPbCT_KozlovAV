@@ -267,3 +267,216 @@ class Person{
         System.out.printf("Id: %d \n", id);
     }
 }
+
+
+9.
+package Main9;
+
+public class Main9{
+
+    public static void main(String[] args) {
+
+        Person tom = new Person();
+        Person bob = new Person();
+
+        tom.displayId();    // Id = 105
+        bob.displayId();    // Id = 106
+    }
+}
+class Person{
+
+    private int id;
+    static int counter;
+
+    static{
+        counter = 105;
+        System.out.println("Static initializer");
+    }
+    Person(){
+        id=counter++;
+        System.out.println("Constructor");
+    }
+    public void displayId(){
+
+        System.out.printf("Id: %d \n", id);
+    }
+}
+
+
+10.
+package Main10;
+
+public class Main10{
+
+    public static void main(String[] args) {
+
+        System.out.println(Operation.sum(45, 23));          // 68
+        System.out.println(Operation.subtract(45, 23));     // 22
+        System.out.println(Operation.multiply(4, 23));      // 92
+    }
+}
+class Operation{
+
+    static int sum(int x, int y){
+        return x + y;
+    }
+    static int subtract(int x, int y){
+        return x - y;
+    }
+    static int multiply(int x, int y){
+        return x * y;
+    }
+}
+
+
+11.
+package Main11;
+
+public class Main11{
+
+    public static void main(String[] args) {
+
+        Person kate = new Person("Kate");
+        System.out.println(kate.getName());     // Kate
+        changePerson(kate);
+        System.out.println(kate.getName());     // Kate - изменения не произошло
+        // kate хранит ссылку на старый объект
+    }
+    static void changePerson(Person p){
+        p = new Person("Alice");    // p указывает на новый объект
+        p.setName("Ann");
+    }
+    static void changeName(Person p){
+        p.setName("Alice");
+    }
+}
+class Person{
+
+    private String name;
+
+    Person(String name){
+        this.name = name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+
+        return this.name;
+    }
+}
+
+
+12.
+package Main12;
+
+public class Main12 {
+
+    public static void main(String[] args) {
+
+        Person tom = new Person("Tom");
+        tom.setAccount("qwerty");
+    }
+}
+class Person{
+
+    private String name;
+
+    Person(String name){
+        this.name = name;
+    }
+
+    public void setAccount (String password){
+
+        class Account{
+
+            void display(){
+                System.out.printf("Account Login: %s \t Password: %s \n", name, password);
+            }
+        }
+        Account account = new Account();
+        account.display();
+    }
+}
+
+
+13.
+package Main13;
+
+public class Main13{
+
+    public static void main(String[] args) {
+
+        Person tom = new Person("Tom");
+        tom.display();
+        Person sam = new Employee("Sam", "Oracle");
+        sam.display();
+    }
+}
+class Person {
+
+    private String name;
+
+    public String getName() { return name; }
+
+    public Person(String name){
+
+        this.name=name;
+    }
+
+    public void display(){
+
+        System.out.printf("Person %s \n", name);
+    }
+}
+
+class Employee extends Person{
+
+    private String company;
+
+    public Employee(String name, String company) {
+
+        super(name);
+        this.company = company;
+    }
+    @Override
+    public void display(){
+
+        System.out.printf("Employee %s works in %s \n", super.getName(), company);
+    }
+}
+
+
+14.
+package Main14;
+
+public class Main14{
+
+    public static void main(String[] args) {
+
+        Person tom = new Person("Tom");
+        Person bob = new Person("Bob");
+        System.out.println(tom.equals(bob)); // false
+
+        Person tom2 = new Person("Tom");
+        System.out.println(tom.equals(tom2)); // true
+    }
+}
+class Person {
+
+    private String name;
+
+    public Person(String name){
+
+        this.name=name;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+
+        if (!(obj instanceof Person)) return false;
+
+        Person p = (Person)obj;
+        return this.name.equals(p.name);
+    }
+}
