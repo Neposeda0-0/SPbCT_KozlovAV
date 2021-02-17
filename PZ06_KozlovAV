@@ -1,0 +1,269 @@
+1.
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Person tom = new Person(); // создание объекта
+        tom.displayInfo();
+
+        tom.name = "Tom";
+        tom.age = 34;
+        tom.displayInfo();
+    }
+}
+class Person{
+
+    String name;        // имя
+    int age;            // возраст
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+
+
+2.
+package com.company;
+
+public class Main2 {
+    public static void main(String[] args) {
+        Person2 undef = new Person2();      // вызов первого конструктора без параметров
+        undef.displayInfo();
+
+        Person2 tom = new Person2("Tom"); // вызов второго конструктора с одним параметром
+        tom.displayInfo();
+
+        Person2 sam = new Person2("Sam", 25); // вызов третьего конструктора с двумя параметрами
+        sam.displayInfo();
+    }
+}
+class Person2{
+
+    String name;    // имя
+    int age;        // возраст
+    Person2()
+    {
+        //name = "Undefined";
+        //age = 18;
+        this("Undefined", 18);
+    }
+    Person2(String name)
+    {
+        //name = n;
+        //age = 18;
+        this(name, 18);
+    }
+    Person2(String name, int age)
+    {
+        //name = n;
+        //age = a;
+        this.name = name;
+        this.age = age;
+    }
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+
+
+3.
+package com.company;
+
+public class Main3 {
+    public static void main(String[] args) {
+        Person3 undef = new Person3();
+        undef.displayInfo();
+
+        Person3 tom = new Person3("Tom");
+        tom.displayInfo();
+    }
+}
+class Person3{
+
+    String name;    // имя
+    int age;        // возраст
+
+    /*начало блока инициализатора*/
+    {
+        name = "Undefined";
+        age = 18;
+    }
+    /*конец блока инициализатора*/
+    Person3(){
+
+    }
+    Person3(String name){
+
+        this.name = name;
+    }
+    Person3(String name, int age){
+
+        this.name = name;
+        this.age = age;
+    }
+    void displayInfo(){
+        System.out.printf("Name: %s \tAge: %d\n", name, age);
+    }
+}
+
+
+4.
+package Study;
+
+public class Main4 {
+    public static void main(String[] args) {
+        Person kate = new Person("Kate", 32);
+        kate.displayInfo();
+    }
+}
+class Person{
+
+    String name;
+    int age;
+
+    Person(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    void displayInfo(){
+        System.out.printf("Name: %s \t Age: %d \n", name, age);
+    }
+}
+
+
+5.
+package Study;
+
+import static java.lang.System.*;
+import static java.lang.Math.*;
+
+public class Main5 {
+
+    public static void main(String[] args) {
+
+        double result = sqrt(20);
+        out.println(result);
+    }
+}
+
+
+6.
+package Study;
+
+public class Main6 {
+    public static void main(String[] args) {
+
+        Person2 kate = new Person2("Kate", 32, "Baker Street", "+12334567");
+        kate.displayName();     // норм, метод public
+        kate.displayAge();      // норм, метод имеет модификатор по умолчанию
+        kate.displayPhone();    // норм, метод protected
+        //kate.displayAddress();  // ! Ошибка, метод private
+
+        System.out.println(kate.name);      // норм, модификатор по умолчанию
+        System.out.println(kate.address);   // норм, модификатор public
+        System.out.println(kate.age);       // норм, модификатор protected
+        //System.out.println(kate.phone);   // ! Ошибка, модификатор private
+    }
+}
+class Person2 {
+
+    String name;
+    protected int age;
+    public String address;
+    private String phone;
+
+    public Person2(String name, int age, String address, String phone){
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.phone = phone;
+    }
+    public void displayName(){
+        System.out.printf("Name: %s \n", name);
+    }
+    void displayAge(){
+        System.out.printf("Age: %d \n", age);
+    }
+    private void displayAddress(){
+        System.out.printf("Address: %s \n", address);
+    }
+    protected void displayPhone(){
+        System.out.printf("Phone: %s \n", phone);
+    }
+}
+
+
+7.
+package Study2;
+
+public class Program{
+
+    public static void main(String[] args) {
+
+        Person kate = new Person("Kate", 30);
+        System.out.println(kate.getAge());      // 30
+        kate.setAge(33);
+        System.out.println(kate.getAge());      // 33
+        kate.setAge(123450);
+        System.out.println(kate.getAge());      // 33
+    }
+}
+class Person{
+
+    private String name;
+    private int age;
+
+    public Person(String name, int age){
+        this.name = name;
+        this.age = age;
+    }
+    public String getName(){
+        return this.name;
+    }
+    public void setName(String name){
+        this.name = name;
+    }
+    public int getAge(){
+        return this.age;
+    }
+    public void setAge(int age){
+        if(age > 0 && age < 110)
+            this.age = age;
+    }
+}
+
+
+8.
+package Main8;
+
+public class Main8{
+
+    public static void main(String[] args) {
+
+        Person tom = new Person();
+        Person bob = new Person();
+
+        tom.displayId();    // Id = 1
+        bob.displayId();    // Id = 2
+        System.out.println(Person.counter); // 3
+
+        // изменяем Person.counter
+        Person.counter = 8;
+
+        Person sam = new Person();
+        sam.displayId();    // Id = 8
+    }
+}
+class Person{
+
+    private int id;
+    static int counter=1;
+
+    Person(){
+        id = counter++;
+    }
+    public void displayId(){
+
+        System.out.printf("Id: %d \n", id);
+    }
+}
