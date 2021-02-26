@@ -1,3 +1,283 @@
+---------Задание 1-------
+---Program---
+public class Program{
+
+    public static void main(String[] args) {
+
+        Book b1 = new Book("Java. Complete Referense.", "H. Shildt");
+        b1.print();
+    }
+}
+interface Printable{
+
+    void print();
+}
+class Book implements Printable{
+
+    String name;
+    String author;
+
+    Book(String name, String author){
+
+        this.name = name;
+        this.author = author;
+    }
+
+    public void print() {
+
+        System.out.printf("%s (%s) \n", name, author);
+    }
+}
+
+
+---Program2---
+public class Program2{
+
+    public static void main(String[] args) {
+
+        Printable printable = new Book("Java. Complete Reference", "H. Shildt");
+        printable.print();      //  Java. Complete Reference (H. Shildt)
+        printable = new Journal("Foreign Policy");
+        printable.print();      // Foreign Policy
+    }
+}
+interface Printable{
+
+    void print();
+}
+class Book implements Printable{
+
+    String name;
+    String author;
+
+    Book(String name, String author){
+
+        this.name = name;
+        this.author = author;
+    }
+
+    public void print() {
+
+        System.out.printf("%s (%s) \n", name, author);
+    }
+}
+class Journal implements Printable {
+
+    private String name;
+
+    String getName(){
+        return name;
+    }
+
+    Journal(String name){
+
+        this.name = name;
+    }
+    public void print() {
+        System.out.println(name);
+    }
+}
+
+
+---Program3---
+public class Program3{
+
+    public static void main(String[] args) {
+
+        Calculatable c = new Calculation();
+        System.out.println(c.sum(1, 2));
+        System.out.println(c.sum(1, 2, 4));
+    }
+}
+class Calculation implements Calculatable{
+
+}
+interface Calculatable{
+
+    default int sum(int a, int b){
+        return sumAll(a, b);
+    }
+    default int sum(int a, int b, int c){
+        return sumAll(a, b, c);
+    }
+
+    private int sumAll(int... values){
+        int result = 0;
+        for(int n : values){
+            result += n;
+        }
+        return result;
+    }
+}
+
+
+---Program4---
+public class Program4{
+
+    public static void main(String[] args) {
+
+        WaterPipe pipe = new WaterPipe();
+        pipe.printState(1);
+    }
+}
+class WaterPipe implements Stateable{
+
+    public void printState(int n){
+        if(n==OPEN)
+            System.out.println("Water is opened");
+        else if(n==CLOSED)
+            System.out.println("Water is closed");
+        else
+            System.out.println("State is invalid");
+    }
+}
+interface Stateable{
+
+    int OPEN = 1;
+    int CLOSED = 0;
+
+    void printState(int n);
+}
+
+
+---Program5---
+public class Program5{
+
+    public static void main(String[] args) {
+
+        Printable printable = createPrintable("Foreign Affairs",false);
+        printable.print();
+
+        read(new Book("Java for impatients", "Cay Horstmann"));
+        read(new Journal("Java Dayly News"));
+    }
+
+    static void read(Printable p){
+
+        p.print();
+    }
+
+    static Printable createPrintable(String name, boolean option){
+
+        if(option)
+            return new Book(name, "Undefined");
+        else
+            return new Journal(name);
+    }
+}
+interface Printable{
+
+    void print();
+}
+class Book implements Printable{
+
+    String name;
+    String author;
+
+    Book(String name, String author){
+
+        this.name = name;
+        this.author = author;
+    }
+
+    public void print() {
+
+        System.out.printf("%s (%s) \n", name, author);
+    }
+}
+class Journal implements Printable {
+
+    private String name;
+
+    String getName(){
+        return name;
+    }
+
+    Journal(String name){
+
+        this.name = name;
+    }
+    public void print() {
+        System.out.println(name);
+    }
+}
+
+
+---Program6---
+public class Program6 {
+
+    public static void main(String[] args) {
+
+        Button button = new Button(new ButtonClickHandler());
+        button.click();
+        button.click();
+        button.click();
+    }
+}
+
+class ButtonClickHandler implements EventHandler{
+
+    public void execute(){
+
+        System.out.println("Кнопка нажата!");
+    }
+}
+
+interface EventHandler{
+
+    void execute();
+}
+
+class Button{
+
+    EventHandler handler;
+    Button(EventHandler action){
+
+        this.handler=action;
+    }
+    public void click(){
+
+        handler.execute();
+    }
+}
+
+
+---Program7---
+public class Program7 {
+
+    public static void main(String[] args) {
+
+        Button tvButton = new Button(new EventHandler(){
+
+            private boolean on = false;
+            public void execute(){
+
+                if(on) {
+                    System.out.println("Телевизор выключен..");
+                    on=false;
+                }
+                else {
+                    System.out.println("Телевизор включен!");
+                    on=true;
+                }
+            }
+        });
+
+        Button printButton = new Button(new EventHandler(){
+
+            public void execute(){
+
+                System.out.println("Запущена печать на принтере...");
+            }
+        });
+
+        tvButton.click();
+        printButton.click();
+        tvButton.click();
+    }
+}
+
+
 ---------Задание 3-------
 ---main---
 package com.company;
