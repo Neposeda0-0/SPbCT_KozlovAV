@@ -1,0 +1,245 @@
+-----------
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class DrawCanvas extends Canvas {
+    private int lastX, lastY;
+    private int ex, ey;
+    private boolean clear=false;
+
+    public DrawCanvas () {
+        super();
+        addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                lastX = e.getX();
+                lastY = e.getY();
+            }
+        });
+
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent e) {
+                ex=e.getX();
+                ey=e.getY();
+                repaint();
+            }
+        });
+
+        addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) {
+                if (e.getKeyChar()==' ') {
+                    clear = true;
+                    repaint();
+                }
+            }
+        });
+    }
+
+    public void update(Graphics g) {
+        if (clear) {
+            g.clearRect(0, 0, getWidth(), getHeight());
+            clear = false;
+        } else {
+            g.drawLine(lastX, lastY, ex, ey);
+            lastX=ex;
+            lastY=ey;
+        }
+    }
+
+//    public void paint(Graphics g) {
+//        g.drawLine(0, 0, getWidth(), getHeight());
+//        g.drawLine(0, getHeight(), getWidth(), 0);
+//    }
+
+
+//    public void paint(Graphics g) {
+//        g.drawRect(0, 0, getWidth()-1, getHeight()-1);
+//        g.drawOval(0, 0, getWidth()-1, getHeight()-1);
+//    }
+
+
+    public void paint(Graphics g) {
+        Font font = new Font("Lucida Console", Font.BOLD, 44);
+        g.setFont(font);
+        g.drawString("somebody once told me...", 20, 50);
+        g.drawLine(20, 50, 115, 50);
+
+    }
+
+//    public void paint(Graphics g) {
+//        for (int i=0; i<4; i++) {
+//            for (int j=0; j<4; j++) {
+//                int c = (int)((i+j)*255/6);
+//                g.setColor(new Color(c, c, c));
+//                g.fillRect(i*getWidth()/4, j*getHeight()/4, getWidth()/4, getHeight()/4);
+//            }
+//        }
+//    }
+
+//    public void paint(Graphics g) {
+//        Color c = new Color(
+//                (int)(Math.random()*255),
+//                (int)(Math.random()*255),
+//                (int)(Math.random()*255));
+//        g.setColor(c);
+//        //g.setClip(null);
+//        g.fillRect(0, 0, getWidth(), getHeight());
+//    }
+
+
+    public static void main(String s[]) {
+        final Frame f = new Frame("Draw");
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                f.dispose();
+            }
+        });
+        f.setSize(400, 300);
+
+        final Canvas c = new DrawCanvas();
+        f.add(c);
+
+        f.setVisible(true);
+
+
+    }
+}
+
+------------------------
+import javax.swing.*;
+import java.applet.Applet;
+import java.awt.*;
+import java.awt.event.*;
+public class Popup  extends Applet implements ActionListener{
+    String colorNames[] = {"Gray","Red","Blue","White"};
+    Color colors[] = {Color.gray,Color.red,Color.blue,Color.white};
+    PopupMenu pm;
+    public void init()
+    {
+        setBackground(Color.gray);
+        pm = new PopupMenu("Фоновый цвет");
+        MenuItem colorName;
+        for ( int i = 0; i <colorNames.length; i++)
+        {
+            colorName = new MenuItem(colorNames[i]);
+            pm.add(colorName);
+            colorName.addActionListener(this);
+            pm.addSeparator();
+        }
+        add(pm);
+        MouseListener ml = new MouseAdapter()
+        {
+            public void mouseReleased(MouseEvent e)
+            {
+                pm.show(e.getComponent(),e.getX(),e.getY());
+            }
+        };
+        addMouseListener(ml);
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+        setBackground(getColor(e.getActionCommand()));
+    }
+    private Color getColor(String name)
+    {
+        for ( int i = 0; i <colorNames.length; i++)
+        {
+            if (colorNames[i].equals(name))
+                return colors[i];
+        }
+        return Color.white;
+    }
+    public static void main(String[] args) {
+        JFrame frame = new JFrame ("Пример");
+        int width = 800;
+        int height = 300;
+        Popup appl = new     Popup();
+        appl.init();
+        frame.getContentPane().add(appl);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(width,height);
+        frame.setVisible(true);
+    }}
+
+-------------------------------
+import java.awt.*;
+import java.awt.event.*;
+
+
+public class SinCanvas extends Canvas {
+
+    public void paint(Graphics g) {
+        int height = getHeight(),
+                width = getWidth();
+        // Вычисляем масштаб таким образом,
+        // чтобы на компоненте всегда умещалось
+        // 5 периодов
+        double k=2*Math.PI*5/width;
+        int sy = calcY(0, width, height, k);
+        for (int i=1; i<width; i++) {
+            int nsy = calcY(i, width, height, k);
+            g.drawLine(i-1, sy, i, nsy);
+            sy=nsy;
+        }
+    }
+
+    // метод, вычисляющий значение функции
+    // для отображения на экране
+    private int calcY(int x, int width,
+                      int height, double k) {
+        double dx = (x-width/2.)*k;
+        return (int)(height/2.*(1-Math.sin(dx)));
+    }
+
+    public static void main(String s[]) {
+        final Frame f = new Frame("Draw");
+        f.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                f.dispose();
+            }
+        });
+        f.setSize(400, 300);
+
+        final Canvas c = new SinCanvas();
+        f.add(c);
+
+        f.setVisible(true);
+    }
+}
+
+-----------------------------
+import java.awt.*;
+import java.awt.event.*;
+
+public class Test {
+    public static void main(String args[]) {
+        Frame frame = new Frame("Test Action");
+        frame.setSize(400, 300);
+        Panel p = new Panel();
+        frame.add(p);
+        Button save = new Button("Save");
+        save.addActionListener(
+                new SaveButtonListener(frame));
+        p.add(save);
+
+        frame.setVisible(true);
+    }
+}
+
+class SaveButtonListener
+        implements ActionListener {
+    private Frame parent;
+    public SaveButtonListener(Frame parentFrame)
+    {
+        parent = parentFrame;
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+        FileDialog fd = new FileDialog(parent,
+                "Save file", FileDialog.SAVE);
+        fd.setVisible(true);
+        System.out.println(fd.getDirectory()+
+                fd.getFile());
+    }
+}
