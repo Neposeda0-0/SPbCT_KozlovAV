@@ -1,0 +1,228 @@
+package com.example.kp_kozlov;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+    String a;
+    String p;
+    String s;
+    int d; //int a, p, s;
+    int days, sale, sum;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        TextView textView = findViewById(R.id.textView);
+
+        //-----------------------------------Задание 1 Вариант 3---------------------
+        /*for (int k = 1; k < 6 ; k++) {
+            for (int i = 0; i < k ; i++) {
+                textView.append("0");
+            }
+            textView.append("\n");
+        }*/
+
+        //-----------------------------------Задание 1 Вариант 5---------------------
+        /*int a = 1+2-4;
+        textView.append(""+a);*/
+
+        //-----------------------------------Задание 2 Вариант 5---------------------
+        /*EditText editText = findViewById(R.id.edit_text);
+        Button button = findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    a = Integer.parseInt(editText.getText().toString());
+                }catch (NumberFormatException e){
+                    a = 0;
+                }
+
+                p = 4*a;
+                s = a*a;
+                textView.setText("Периметр квадрата = "+p);
+                textView.append("\nПлощадь квадрата = "+s);
+            }
+
+        });*/
+
+        //-----------------------------------Задание 2 Вариант 11---------------------
+        /*EditText edit_days = findViewById(R.id.edit_days);
+        EditText edit_sale = findViewById(R.id.edit_sale);
+        EditText edit_sum = findViewById(R.id.edit_sum);
+        Button button = findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    days = Integer.parseInt(edit_days.getText().toString());
+                    sale = Integer.parseInt(edit_sale.getText().toString());
+                    sum = Integer.parseInt(edit_sum.getText().toString());
+                }catch (NumberFormatException e){
+                    days = 0;
+                    sale = 0;
+                    sum = 0;
+                }
+
+                sale /= 100;
+                for (int i = 0; i<days; i++){
+                    sum += 3;
+                    sum += sum*sale;
+                }
+
+                textView.setText("Итоговая прибыль = "+sum);
+            }
+        });*/
+
+        //-----------------------------------Задание 3 Вариант 5---------------------
+        /*EditText num1 = findViewById(R.id.edit_n1);
+        EditText num2 = findViewById(R.id.edit_n2);
+        Button button = findViewById(R.id.button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    a = Integer.parseInt(num1.getText().toString());
+                    p = Integer.parseInt(num2.getText().toString());
+                }catch (NumberFormatException e){
+                    a = 0;
+                    p = 0;
+                }
+                int max = Math.max(a, p);
+                int min = Math.min(a, p);
+                if((max - min)>=100){
+                    textView.setText("Yes");
+                }else {
+                    textView.setText("No");
+                }
+
+            }
+
+        });*/
+
+        //-----------------------------------Задание 3 Вариант 11---------------------
+        /*EditText editText = findViewById(R.id.edit_n1);
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    a = editText.getText().toString();
+                    StringBuilder sb = new StringBuilder(a);
+                    p = sb.reverse().toString();
+                }catch (NumberFormatException e){
+                    a = "";
+                    p = "";
+                }
+
+                if(a.equals(p)){
+                    textView.setText("Yes");
+                }else {
+                    textView.setText("No");
+                }
+
+            }
+        });*/
+
+        //-----------------------------------Задание 4 Вариант 5---------------------
+        /*for(int i=1001; i<=1025; i++){
+            textView.append(i+"; ");
+        }*/
+
+        //-----------------------------------Задание 4 Вариант 9---------------------
+        /*int ROWS = 101;
+        int COLS = 3;
+
+        EditText editText = findViewById(R.id.editText);
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    d = Integer.parseInt(editText.getText().toString());
+                }catch (NumberFormatException e){
+                    d = 0;
+                }
+                for (int i = 0; i < ROWS; i++) {
+                    TableLayout tblLayout = null;
+                    tblLayout = (TableLayout) findViewById(R.id.tableLayout);
+                    TableRow tableRow = new TableRow(tblLayout.getContext());
+                    tableRow.setLayoutParams(new TableLayout.LayoutParams(
+                            TableRow.LayoutParams.MATCH_PARENT,
+                            TableRow.LayoutParams.WRAP_CONTENT));
+                    for (int j = 0; j < COLS; j++) {
+                        if (j == 0 && i==0){
+                            TextView tv = new TextView(tblLayout.getContext());
+                            tv.setText("Доллар ");
+                            tableRow.addView(tv, j);
+                        }else if(j == 1 && i==0){
+                            TextView tv = new TextView(tblLayout.getContext());
+                            tv.setText("Рубли ");
+                            tableRow.addView(tv, j);
+                        }else if(j == 2 && i==0){
+                            TextView tv = new TextView(tblLayout.getContext());
+                            tv.setText(" Конфеты, кг");
+                            tableRow.addView(tv, j);
+                        }else {
+                            if(j == 0){
+                                for(int r = i; r<=i; r++){
+                                    TextView tv = new TextView(tblLayout.getContext());
+                                    tv.setText(""+i);
+                                    tableRow.addView(tv, j);
+                                }
+                            }else if(j == 1){
+                                for(int r = i; r<=i; r++){
+                                    TextView tv = new TextView(tblLayout.getContext());
+                                    tv.setText(""+d*r);
+                                    tableRow.addView(tv, j);
+                                }
+                            }else{
+                                for(int r = i; r<=i; r++){
+                                    TextView tv = new TextView(tblLayout.getContext());
+                                    double f = d*r/20.0;
+                                    tv.setText(""+ f);
+                                    tableRow.addView(tv, j);
+                                }
+                            }
+                        }
+                    }
+                    tblLayout.addView(tableRow, i);
+                }
+            }
+        });*/
+
+        //-----------------------------------Задание 5 Вариант 3---------------------
+        /*for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 7; j++) {
+                textView.append(""+ getRndCharUpperCase());
+            }
+            textView.append("\n");
+        }*/
+
+        //-----------------------------------Задание 5 Вариант 6---------------------
+        
+
+    }
+
+    //----------------------------Метод для Задания 5 Вариант 3--------------------
+    /*public static char getRndCharUpperCase() {
+        char tmpChar = (char)(Math.random()*100);
+        while (!Character.isUpperCase(tmpChar))
+            tmpChar = (char)(Math.random()*100);
+        return tmpChar;
+    }*/
+}
